@@ -18,19 +18,19 @@ public class ShipInput : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-       
-        
+        transform.position = (Vector2)transform.position + (currentMoveDirection * moveSpeed * Time.deltaTime);
+        if (GameManager.Instance.isWorldMoving)
+        {
+            transform.position += transform.right * GameManager.Instance.worldMovementRate * Time.deltaTime;
+        }
+
     }
 
     private void FixedUpdate()
     {
-        transform.position = (Vector2)transform.position + currentMoveDirection * moveSpeed * Time.deltaTime;
-        if(GameManager.Instance.isWorldMoving)
-        {
-            transform.position += transform.right * GameManager.Instance.worldMovementRate * Time.deltaTime;
-        }
+        
         
     }
 

@@ -75,7 +75,8 @@ public class Spawner : MonoBehaviour
         if (collision.gameObject.name == "SpawnField")
         {
             Vector3 pos = transform.position;
-            Instantiate(enemyType, pos, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyType, pos, Quaternion.identity);
+            enemy.GetComponent<EnemyBase>().waypoints = waypoints;
         }
     }
 
