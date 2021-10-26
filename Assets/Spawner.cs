@@ -7,6 +7,10 @@ public class Spawner : MonoBehaviour
 {
     public List<WaypointData> waypoints = new List<WaypointData>();
     public GameObject enemyType;
+    public int numOfEnemies;
+    public bool powerupEnemy;
+    public int powerupPositionInWave;
+
     // Start is called before the first frame update
     void Start()
     {
