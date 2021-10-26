@@ -31,7 +31,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Movement()
     {
         float distance = Vector3.Distance(transform.position, currentWaypoint);
-        if (distance < 0.1f )
+        if (distance < 0.1f)
         {
             if (waypointIndex < waypoints.Count - 1)
             {
@@ -39,7 +39,16 @@ public abstract class EnemyBase : MonoBehaviour
                 currentSpeed = waypoints[waypointIndex].speed;
                 currentWaypoint = waypoints[waypointIndex].waypoint;
             }
-            
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "SpawnField")
+        {
+            Destroy(gameObject);
         }
     }
 }
+

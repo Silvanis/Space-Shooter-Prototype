@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 179799268}
   - component: {fileID: 179799267}
   - component: {fileID: 179799266}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: ShipConstraint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -8.4, y: 0}
@@ -5325,7 +5325,7 @@ PrefabInstance:
     - target: {fileID: 5461809412025438232, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.66
+      value: 2.87
       objectReference: {fileID: 0}
     - target: {fileID: 5461809412025438232, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
@@ -5372,12 +5372,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5768335386343375141, guid: 73464e9873d90ec43baf848ea931b071,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: enemyType
       value: 
       objectReference: {fileID: 6241805633189310672, guid: eb65bbc1ffe17464cb93b0d732929315,
         type: 3}
+    - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
+        type: 3}
+      propertyPath: spawnTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: numOfEnemies
@@ -5388,6 +5398,11 @@ PrefabInstance:
       propertyPath: powerupEnemy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
+        type: 3}
+      propertyPath: powerupMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a3e2386c37d4224bbaf825f4f037c36, type: 2}
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: waypoints.Array.size
@@ -5426,7 +5441,7 @@ PrefabInstance:
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: waypoints.Array.data[0].waypoint.y
-      value: 3.66
+      value: 2.87
       objectReference: {fileID: 0}
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
@@ -5441,7 +5456,7 @@ PrefabInstance:
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: waypoints.Array.data[2].waypoint.x
-      value: 17.34
+      value: 19.46
       objectReference: {fileID: 0}
     - target: {fileID: 6047856883944339386, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}

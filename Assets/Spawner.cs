@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     public int numOfEnemies;
     public bool powerupEnemy;
     public int powerupPositionInWave;
+    public float spawnTime;
+    public Material powerupMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -78,9 +80,22 @@ public class Spawner : MonoBehaviour
     {
         if (collision.gameObject.name == "SpawnField")
         {
+            _ = StartCoroutine("SpawnEnemies");
+        }
+    }
+
+    IEnumerator SpawnEnemies()
+    {
+        for (int i = 1; i <= numOfEnemies; i++)
+        {
             Vector3 pos = transform.position;
             GameObject enemy = Instantiate(enemyType, pos, Quaternion.identity);
             enemy.GetComponent<EnemyBase>().waypoints = waypoints;
+            if (i == powerupPositionInWave)
+            {
+                enemy.GetComponent<Renderer>().material = powerupMaterial;
+            }
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 

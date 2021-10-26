@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5461809412025438232}
   - component: {fileID: 6047856883944339386}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,3 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7d9ab882d14a54ca243a5104839f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints: []
+  enemyType: {fileID: 0}
+  numOfEnemies: 0
+  powerupEnemy: 0
+  powerupPositionInWave: 0
+  spawnTime: 0
+  powerupMaterial: {fileID: 0}
