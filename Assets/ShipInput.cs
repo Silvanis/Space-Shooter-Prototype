@@ -21,17 +21,17 @@ public class ShipInput : MonoBehaviour
     private void Update()
     {
         transform.position = (Vector2)transform.position + (currentMoveDirection * moveSpeed * Time.deltaTime);
-        if (GameManager.Instance.isWorldMoving)
-        {
-            transform.position += transform.right * GameManager.Instance.worldMovementRate * Time.deltaTime;
-        }
+
 
     }
 
     private void FixedUpdate()
     {
-        
-        
+        if (GameManager.Instance.isWorldMoving)
+        {
+            transform.position += transform.right * GameManager.Instance.worldMovementRate * Time.fixedDeltaTime;
+        }
+
     }
 
 

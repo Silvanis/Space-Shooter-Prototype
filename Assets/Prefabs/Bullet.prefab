@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 984326987717111817}
   - component: {fileID: -458368370119330825}
-  m_Layer: 0
+  - component: {fileID: 6877030210161588144}
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,11 +42,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 984326987717111818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e1935a3df437854f901aac902bea3c7, type: 3}
+  m_Script: {fileID: 11500000, guid: a49d88cf4bb208147a47885fafc1f362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 8
+  bulletSpeed: 5
   isVisible: 1
+--- !u!61 &6877030210161588144
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984326987717111818}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.28, y: 0.44}
+  m_EdgeRadius: 0
 --- !u!1 &984326988864254224
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 984326988864254239}
   - component: {fileID: 984326988864254238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

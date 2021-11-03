@@ -11,14 +11,12 @@ public class WeaponManagement : MonoBehaviour
     private int currentNumOfBullets = 0;
     private bool isShooting = false;
     private float fireTimerAccumulator = 0.0f;
-    private List<BulletMovement> bulletList;
-    private List<BulletMovement> removeList;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        bulletList = new List<BulletMovement>();
-        removeList = new List<BulletMovement>();
+
     }
 
     // Update is called once per frame
@@ -31,35 +29,23 @@ public class WeaponManagement : MonoBehaviour
             {
                 Vector2 bulletPosition = new Vector2(this.transform.position.x + .25f, this.transform.position.y);
                 var newBullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation);
-                bulletList.Add(newBullet.GetComponent<BulletMovement>());
+                newBullet.GetComponent<ProjectileBase>().OnProjectileDestroyed += WeaponManagement_OnProjectileDestroyed;
                 fireTimerAccumulator = 0.0f;
                 currentNumOfBullets++;
+                
             }
         }
 
     }
 
+    private void WeaponManagement_OnProjectileDestroyed()
+    {
+        currentNumOfBullets--;
+    }
+
     private void FixedUpdate()
     {
-        foreach (var bullet in bulletList)
-        {
-            if (!bullet.isVisible)
-            {
-                currentNumOfBullets--;
-                removeList.Add(bullet);
-            }
-        }
-
-        foreach (var bullet in removeList)
-        {
-            bulletList.Remove(bullet);
-            Destroy(bullet.gameObject);
-        }
-
-        if (removeList.Count > 0)
-        {
-            removeList.Clear();
-        }
+ 
 
     }
 
@@ -75,8 +61,5 @@ public class WeaponManagement : MonoBehaviour
         }
     }
 
-    public void RemoveBullet()
-    {
-        currentNumOfBullets--;
-    }
+
 }
