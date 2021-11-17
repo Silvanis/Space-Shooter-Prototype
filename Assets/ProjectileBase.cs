@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void ProjectileDelegate();
+
 public abstract class ProjectileBase : MonoBehaviour
 {
     public float bulletSpeed = 5.0f;
-    protected SpriteRenderer m_renderer;
+   
     public bool isVisible = true;
 
-    public event ProjectileDelegate OnProjectileDestroyed;
+    
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        m_renderer = GetComponentInChildren<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -32,7 +32,6 @@ public abstract class ProjectileBase : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            OnProjectileDestroyed.Invoke();
             Destroy(gameObject);
         }
     }
@@ -41,7 +40,6 @@ public abstract class ProjectileBase : MonoBehaviour
     {
         if (collision.gameObject.name == "SpawnField")
         {
-            OnProjectileDestroyed.Invoke();
             Destroy(gameObject);
         }
     }

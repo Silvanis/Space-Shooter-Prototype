@@ -8,12 +8,19 @@ public abstract class EnemyBase : MonoBehaviour
     protected float currentSpeed;
     protected Vector3 currentWaypoint;
     protected int waypointIndex;
+    public float initialFireDelay;
+    public float subsequentFireDelay;
+    protected float timeToFire;
+    protected bool firedFirstShot;
+    public GameObject projectilePrefab;
     // Start is called before the first frame update
     protected virtual void Start()
     {
         currentSpeed = waypoints[0].speed;
         currentWaypoint = waypoints[0].waypoint;
         waypointIndex = 0;
+        timeToFire = 0.0f;
+        firedFirstShot = false;
     }
 
     // Update is called once per frame
@@ -26,6 +33,21 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Movement();
+        timeToFire += Time.fixedDeltaTime;
+        if (!firedFirstShot)
+        {
+            if (timeToFire > initialFireDelay)
+            {
+                Shoot();
+                firedFirstShot = true;
+                timeToFire = 0.0f;
+            }
+        }
+        else if (timeToFire > subsequentFireDelay)
+        {
+            Shoot();
+            timeToFire = 0.0f;
+        }
     }
 
     protected virtual void Movement()
@@ -41,6 +63,11 @@ public abstract class EnemyBase : MonoBehaviour
             }
 
         }
+    }
+
+    protected virtual void Shoot()
+    {
+        _ = Instantiate(projectilePrefab, transform.position, transform.rotation);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

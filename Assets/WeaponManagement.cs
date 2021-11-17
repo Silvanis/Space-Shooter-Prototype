@@ -29,7 +29,7 @@ public class WeaponManagement : MonoBehaviour
             {
                 Vector2 bulletPosition = new Vector2(this.transform.position.x + .25f, this.transform.position.y);
                 var newBullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation);
-                newBullet.GetComponent<ProjectileBase>().OnProjectileDestroyed += WeaponManagement_OnProjectileDestroyed;
+                newBullet.GetComponent<BulletProjectile>().OnBulletDestroyed += WeaponManagement_OnBulletDestroyed;
                 fireTimerAccumulator = 0.0f;
                 currentNumOfBullets++;
                 
@@ -38,7 +38,7 @@ public class WeaponManagement : MonoBehaviour
 
     }
 
-    private void WeaponManagement_OnProjectileDestroyed()
+    private void WeaponManagement_OnBulletDestroyed()
     {
         currentNumOfBullets--;
     }

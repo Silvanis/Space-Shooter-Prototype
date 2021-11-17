@@ -95,6 +95,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  initialFireDelay: 0.1
+  subsequentFireDelay: 5
+  projectilePrefab: {fileID: 3158645427001811218, guid: a1fe88709d8c7124e8dd138902e51bc8,
+    type: 3}
 --- !u!70 &161861026435745050
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
