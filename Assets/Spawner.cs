@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEditor;
 
+[RequireComponent(typeof(Collider2D))]
 public class Spawner : MonoBehaviour
 {
-    public List<WaypointData> waypoints = new List<WaypointData>();
-    public GameObject enemyType;
-    public int numOfEnemies;
-    public bool powerupEnemy;
-    public int powerupPositionInWave;
-    public float spawnTime;
-    public Material powerupMaterial;
+    [SerializeField] private List<WaypointData> waypoints = new List<WaypointData>();
+    [Range(0.0f, 15.0f)]
+    [SerializeField] private float spawnTime;
+    
+    [Header("Enemy Info")]
+    [SerializeField] private GameObject enemyType;
+    [Range(1,10)]
+    [SerializeField] private int numOfEnemies;
+    [SerializeField] private bool powerupEnemy;
+    [SerializeField] private int powerupPositionInWave;
+    [SerializeField] private Color powerupColor;
+
+    public List<WaypointData> Waypoints { get => waypoints; set => waypoints = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +55,7 @@ public class Spawner : MonoBehaviour
                 }
             }
         }
-        
+
 
     }
 
@@ -93,7 +100,7 @@ public class Spawner : MonoBehaviour
             enemy.GetComponent<EnemyBase>().waypoints = waypoints;
             if (i == powerupPositionInWave)
             {
-                enemy.GetComponent<Renderer>().material = powerupMaterial;
+                enemy.GetComponent<Renderer>().material.color = powerupColor;
             }
             yield return new WaitForSeconds(spawnTime);
         }

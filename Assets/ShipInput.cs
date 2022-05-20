@@ -9,19 +9,20 @@ public class ShipInput : MonoBehaviour
     
 
     private Vector2 currentMoveDirection = new Vector2(0.0f, 0.0f);
+    private Animator shipAnimationController;
+    private bool movingVertical = false;
    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        shipAnimationController = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     private void Update()
     {
         transform.position = (Vector2)transform.position + (currentMoveDirection * moveSpeed * Time.deltaTime);
-
 
     }
 
@@ -39,6 +40,31 @@ public class ShipInput : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         currentMoveDirection = context.ReadValue<Vector2>().normalized;
+        if (Mathf.Abs(currentMoveDirection.y) > 0.1f) //moving up or down?
+        {
+            if (!movingVertical) //have we started moving up or down?
+            {
+                movingVertical = true;
+                shipAnimationController.SetBool("stoppedMoving", false);
+                if (currentMoveDirection.y > 0.5f)
+                {
+                    shipAnimationController.SetTrigger("Moving Up");
+                }
+                else
+                {
+                    shipAnimationController.SetTrigger("Moving Down");
+                }
+            }
+
+        }
+        else //not moving up or down
+        {
+            if (movingVertical)
+            {
+                movingVertical = false;
+                shipAnimationController.SetBool("stoppedMoving", true);
+            }
+        }
         
         
     }

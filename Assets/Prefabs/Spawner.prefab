@@ -49,4 +49,4 @@ MonoBehaviour:
   powerupEnemy: 0
   powerupPositionInWave: 0
   spawnTime: 0
-  powerupMaterial: {fileID: 0}
+  powerupMaterial: {r: 0.3301887, g: 0.08721965, b: 0.27460158, a: 1}
