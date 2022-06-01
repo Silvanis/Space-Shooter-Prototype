@@ -13,6 +13,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected float timeToFire;
     protected bool firedFirstShot;
     public GameObject projectilePrefab;
+    public GameObject powerupPrefab;
+    public bool isPowerupEnemy = false;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -82,6 +84,10 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player Weapons"))
         {
+            if (isPowerupEnemy)
+            {
+                Instantiate(powerupPrefab, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

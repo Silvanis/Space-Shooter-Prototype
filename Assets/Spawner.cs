@@ -101,6 +101,7 @@ public class Spawner : MonoBehaviour
             if (i == powerupPositionInWave)
             {
                 enemy.GetComponent<Renderer>().material.color = powerupColor;
+                enemy.GetComponent<EnemyBase>().isPowerupEnemy = true;
             }
             yield return new WaitForSeconds(spawnTime);
         }
