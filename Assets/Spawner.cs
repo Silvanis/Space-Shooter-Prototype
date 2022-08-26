@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEditor;
+using UnityEditor;
 
+[ExecuteInEditMode]
 [RequireComponent(typeof(Collider2D))]
 public class Spawner : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool powerupEnemy;
     [SerializeField] private int powerupPositionInWave;
     [SerializeField] private Color powerupColor;
+    private Vector3 oldPosition;
 
     public List<WaypointData> Waypoints { get => waypoints; set => waypoints = value; }
 
@@ -26,10 +28,26 @@ public class Spawner : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        oldPosition = transform.position;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.hasChanged)
+        {
+            Vector3 changeInPosition = transform.position - oldPosition;
+            for (int i = 0; i < waypoints.Count; i++)
+            {
+                WaypointData data = waypoints[i];
+                data.waypoint += changeInPosition;
+                waypoints[i] = data;
+            }
+            oldPosition = transform.position;
+
+        }
     }
 
     private void OnDrawGizmos()
