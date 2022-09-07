@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PowerupManager : MonoBehaviour
 {
@@ -9,6 +10,16 @@ public class PowerupManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("onPowerupCollect", OnPowerupCollect);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("onPowerupCollect", OnPowerupCollect);
     }
 
     // Update is called once per frame
@@ -21,5 +32,13 @@ public class PowerupManager : MonoBehaviour
     {
         powerupStage++;
         Debug.Log("Gathered Powerup");
+    }
+
+    public void OnPowerup(InputAction.CallbackContext context)
+    {
+        if (context.started || context.performed)
+        {
+            Debug.Log("Use Powerup");
+        }
     }
 }

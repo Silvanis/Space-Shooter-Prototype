@@ -543,7 +543,7 @@ RectTransform:
   m_Children:
   - {fileID: 344112125}
   m_Father: {fileID: 1302486495}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -574,7 +574,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.34175864, g: 0.47574416, b: 0.754717, a: 1}
     m_PressedColor: {r: 0.5283019, g: 0.51334995, b: 0.51334995, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.38679248, g: 0.37584552, b: 0.37584552, a: 0.5019608}
+    m_DisabledColor: {r: 0.5294118, g: 0.5137255, b: 0.5137255, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -588,7 +588,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 481887530}
   m_OnClick:
     m_PersistentCalls:
@@ -6157,7 +6157,7 @@ RectTransform:
   m_Children:
   - {fileID: 1326095108}
   m_Father: {fileID: 1302486495}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6188,7 +6188,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.34175864, g: 0.47574416, b: 0.754717, a: 1}
     m_PressedColor: {r: 0.5283019, g: 0.51334995, b: 0.51334995, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.38679248, g: 0.37584552, b: 0.37584552, a: 0.5019608}
+    m_DisabledColor: {r: 0.5294118, g: 0.5137255, b: 0.5137255, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6202,7 +6202,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1051783439}
   m_OnClick:
     m_PersistentCalls:
@@ -6517,7 +6517,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.34175864, g: 0.47574416, b: 0.754717, a: 1}
     m_PressedColor: {r: 0.5283019, g: 0.51334995, b: 0.51334995, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.38679248, g: 0.37584552, b: 0.37584552, a: 0.5019608}
+    m_DisabledColor: {r: 0.5294118, g: 0.5137255, b: 0.5137255, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6531,7 +6531,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1117212180}
   m_OnClick:
     m_PersistentCalls:
@@ -11649,7 +11649,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.34175864, g: 0.47574416, b: 0.754717, a: 1}
     m_PressedColor: {r: 0.5283019, g: 0.51334995, b: 0.51334995, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.38679248, g: 0.37584552, b: 0.37584552, a: 0.5019608}
+    m_DisabledColor: {r: 0.50980395, g: 0.49411768, b: 0.49411768, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11663,7 +11663,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1291451543}
   m_OnClick:
     m_PersistentCalls:
@@ -11732,18 +11732,18 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1310497822}
   - {fileID: 481887528}
   - {fileID: 1051783437}
+  - {fileID: 1310497822}
   - {fileID: 1478896745}
   - {fileID: 1291451541}
   - {fileID: 1117212178}
   m_Father: {fileID: 1355406349}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 344}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1310497821
@@ -11778,7 +11778,7 @@ RectTransform:
   m_Children:
   - {fileID: 842704360}
   m_Father: {fileID: 1302486495}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11809,7 +11809,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.34175864, g: 0.47574416, b: 0.754717, a: 1}
     m_PressedColor: {r: 0.5283019, g: 0.51334995, b: 0.51334995, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.38679248, g: 0.37584552, b: 0.37584552, a: 0.5019608}
+    m_DisabledColor: {r: 0.5294118, g: 0.5137255, b: 0.5137255, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11823,7 +11823,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1310497824}
   m_OnClick:
     m_PersistentCalls:
@@ -12243,7 +12243,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.34175864, g: 0.47574416, b: 0.754717, a: 1}
     m_PressedColor: {r: 0.5283019, g: 0.51334995, b: 0.51334995, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.38679248, g: 0.37584552, b: 0.37584552, a: 0.5019608}
+    m_DisabledColor: {r: 0.5294118, g: 0.5137255, b: 0.5137255, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12257,7 +12257,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1478896747}
   m_OnClick:
     m_PersistentCalls:
@@ -12724,6 +12724,21 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ea22b180-b8ed-4a6e-97fe-87d03a793a42
     m_ActionName: UI/TrackedDeviceSelect
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1125963324}
+        m_MethodName: OnPowerup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 06a99a77-406b-4831-9bd2-9491532e7a33
+    m_ActionName: Player/Powerup[/XInputControllerWindows/buttonEast,/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -12757,7 +12772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eca00ab15c58d54da921b6927332fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
 --- !u!114 &1793694895
 MonoBehaviour:
   m_ObjectHideFlags: 0

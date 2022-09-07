@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-    private GameObject powerupManagerObject;
-    private PowerupManager powerupManagerScript;
+  
     // Start is called before the first frame update
     void Start()
     {
-        powerupManagerObject = GameObject.Find("Global");
-        powerupManagerScript = powerupManagerObject.GetComponent<PowerupManager>();
+ 
     }
 
     // Update is called once per frame
@@ -31,7 +29,7 @@ public class Powerup : MonoBehaviour
     {
         if (collision.gameObject.name == "Ship")
         {
-            powerupManagerScript.OnPowerupCollect();
+            EventManager.TriggerEvent("onPowerupCollect");
             Destroy(gameObject);
         }
     }
