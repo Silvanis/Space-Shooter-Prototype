@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ShipInput : MonoBehaviour
 {
-    public float moveSpeed = 10.0f;
+    [SerializeField]
+    private float moveSpeed = 10.0f;
+    [SerializeField]
+    private float speedupIncrement = 1.0f;
     
 
     private Vector2 currentMoveDirection = new Vector2(0.0f, 0.0f);
@@ -30,12 +34,25 @@ public class ShipInput : MonoBehaviour
     {
         if (GameManager.Instance.isWorldMoving)
         {
-            transform.position += transform.right * GameManager.Instance.worldMovementRate * Time.fixedDeltaTime;
+            transform.position += GameManager.Instance.worldMovementRate * Time.fixedDeltaTime * transform.right;
         }
 
     }
 
+    private void OnEnable()
+    {
+        EventManager.StartListening("onSpeedupSelected", OnSpeedupSelected);
+    }
 
+    private void OnDisable()
+    {
+        EventManager.StopListening("onSpeedupSelected", OnSpeedupSelected);
+    }
+
+    private void OnSpeedupSelected()
+    {
+        moveSpeed += speedupIncrement;
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
