@@ -10,17 +10,29 @@ public class ShipInput : MonoBehaviour
     private float moveSpeed = 10.0f;
     [SerializeField]
     private float speedupIncrement = 1.0f;
+    [Tooltip("Max number of Speedups allowed")]
+    [SerializeField]
+    private int maxNumberOfSpeedups = 4; //counts initial stage
+    private int speedupStage = 1;
     
 
     private Vector2 currentMoveDirection = new Vector2(0.0f, 0.0f);
     private Animator shipAnimationController;
     private bool movingVertical = false;
-   
+    private GameObject shipFlamesStage1;
+    private GameObject shipFlamesStage2;
+    private GameObject shipFlamesStage3;
+    private GameObject shipFlamesStage4;
+
 
     // Start is called before the first frame update
     void Start()
     {
         shipAnimationController = GetComponentInChildren<Animator>();
+        shipFlamesStage1 = transform.Find("ShipModel/SpeedStage1").gameObject;
+        shipFlamesStage2 = transform.Find("ShipModel/SpeedStage2").gameObject;
+        shipFlamesStage3 = transform.Find("ShipModel/SpeedStage3").gameObject;
+        shipFlamesStage4 = transform.Find("ShipModel/SpeedStage4").gameObject;
     }
 
     // Update is called once per frame
@@ -39,19 +51,32 @@ public class ShipInput : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        EventManager.StartListening("onSpeedupSelected", OnSpeedupSelected);
-    }
 
-    private void OnDisable()
+    public void OnSpeedupSelected()
     {
-        EventManager.StopListening("onSpeedupSelected", OnSpeedupSelected);
-    }
-
-    private void OnSpeedupSelected()
-    {
-        moveSpeed += speedupIncrement;
+        if (speedupStage < maxNumberOfSpeedups)
+        {
+            speedupStage++;
+            moveSpeed += speedupIncrement;
+            switch (speedupStage)
+            {
+                case 2:
+                    shipFlamesStage2.SetActive(true);
+                    shipFlamesStage1.SetActive(false);
+                    break;
+                case 3:
+                    shipFlamesStage3.SetActive(true);
+                    shipFlamesStage2.SetActive(false);
+                    break;
+                case 4:
+                    shipFlamesStage4.SetActive(true);
+                    shipFlamesStage3.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
