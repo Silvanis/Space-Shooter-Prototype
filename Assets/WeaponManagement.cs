@@ -5,13 +5,23 @@ using UnityEngine.InputSystem;
 
 public class WeaponManagement : MonoBehaviour
 {
-    public float fireRate = 0.5f;
-    public GameObject bulletPrefab;
-    public int maxNumOfBullets = 4;
+    [SerializeField]
+    private float bulletFireRate = 0.5f;
+    [SerializeField]
+    private GameObject bulletPrefab;
+    [SerializeField]
+    private int maxNumOfBullets = 4;
     private int currentNumOfBullets = 0;
     private bool isShooting = false;
-    private float fireTimerAccumulator = 0.0f;
+    private bool isUsingBullets = true; //will need to test if using laser
+    private float bulletFireTimerAccumulator = 0.0f;
 
+    [SerializeField]
+    private float missileFireRate = 2.0f;
+    [SerializeField]
+    private GameObject missilePrefab;
+    private bool isUsingMissiles = false;
+    private float missileFireTimerAccumulator = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,16 +32,28 @@ public class WeaponManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isShooting)
+        if (isShooting && isUsingBullets)
         {
-            fireTimerAccumulator += Time.deltaTime;
-            if (fireTimerAccumulator > fireRate && currentNumOfBullets < maxNumOfBullets)
+            bulletFireTimerAccumulator += Time.deltaTime;
+            if (bulletFireTimerAccumulator > bulletFireRate && currentNumOfBullets < maxNumOfBullets)
             {
                 Vector2 bulletPosition = new Vector2(this.transform.position.x + .25f, this.transform.position.y);
                 var newBullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation);
                 newBullet.GetComponent<BulletProjectile>().OnBulletDestroyed += WeaponManagement_OnBulletDestroyed;
-                fireTimerAccumulator = 0.0f;
+                bulletFireTimerAccumulator = 0.0f;
                 currentNumOfBullets++;
+                
+            }
+        }
+
+        if (isShooting && isUsingMissiles)
+        {
+            missileFireTimerAccumulator += Time.deltaTime;
+            if (missileFireTimerAccumulator > missileFireRate)
+            {
+                Vector2 missilePosition = new Vector2(this.transform.position.x, this.transform.position.y - 0.2f);
+                var newMissile = Instantiate(missilePrefab, missilePosition, transform.rotation);
+                missileFireTimerAccumulator = 0.0f;
                 
             }
         }
