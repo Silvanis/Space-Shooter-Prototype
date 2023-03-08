@@ -29,7 +29,7 @@ public class Powerup : MonoBehaviour
     {
         if (collision.gameObject.name == "Ship")
         {
-            EventManager.TriggerEvent("onPowerupCollect");
+            EventManager.TriggerEvent("onPowerupCollect", null);
             Destroy(gameObject);
         }
     }

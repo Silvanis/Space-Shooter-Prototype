@@ -10160,7 +10160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &401104825
 GameObject:
@@ -10438,7 +10438,7 @@ PrefabInstance:
     - target: {fileID: 5461809412025438232, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5461809412025438232, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
@@ -20435,7 +20435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Missle
+  m_text: Missile
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20933,7 +20933,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Missle
+  m_text: Missile
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36062,7 +36062,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1125963323
 MonoBehaviour:
@@ -47813,10 +47813,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bbdaa977d85d44f81a7a2f54557542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.15
+  bulletFireRate: 0.1
   bulletPrefab: {fileID: 984326987717111818, guid: 3081d2673a2c4be4190ec76137d07ad5,
     type: 3}
   maxNumOfBullets: 4
+  missileFireRate: 2
+  missilePrefab: {fileID: 7189982850925033314, guid: f7d1ea972861510408e98e64ca115698,
+    type: 3}
+  missileAutofire: 1
 --- !u!61 &1793694896
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47877,7 +47881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedupButton: {fileID: 1310497823}
-  missleButton: {fileID: 1264283719}
+  missileButton: {fileID: 1264283719}
   doubleButton: {fileID: 1710674201}
   laserButton: {fileID: 1794462294}
   cloneButton: {fileID: 167482584}
@@ -48156,7 +48160,7 @@ PrefabInstance:
     - target: {fileID: 5461809412025438232, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5461809412025438232, guid: 73464e9873d90ec43baf848ea931b071,
         type: 3}

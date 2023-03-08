@@ -11,7 +11,7 @@ public class PowerupManager : MonoBehaviour
     [SerializeField]
     private Button speedupButton;
     [SerializeField]
-    private Button missleButton;
+    private Button missileButton;
     [SerializeField]
     private Button doubleButton;
     [SerializeField]
@@ -67,7 +67,7 @@ public class PowerupManager : MonoBehaviour
     {
         ship = gameObject.GetComponent<ShipInput>();
         currentSpeedupButton = speedupButton;
-        currentMissileButton = missleButton;
+        currentMissileButton = missileButton;
         currentDoubleButton = doubleButton;
         currentLaserButton = laserButton;
         currentCloneButton = cloneButton;
@@ -90,7 +90,7 @@ public class PowerupManager : MonoBehaviour
         
     }
 
-    public void OnPowerupCollect()
+    public void OnPowerupCollect(Dictionary<string, object> message)
     {
 
         powerupStage++;
@@ -98,14 +98,14 @@ public class PowerupManager : MonoBehaviour
         switch (powerupStage) //set button on current stage to selected, make the previous one go back to highlighted
         {
             case POWEUP_STAGE.SPEEDUP:
-                currentSpeedupButton.animator.SetTrigger(speedupButton.animationTriggers.selectedTrigger);
+                currentSpeedupButton.animator.SetTrigger(currentSpeedupButton.animationTriggers.selectedTrigger);
                 break;
             case POWEUP_STAGE.MISSLE:
-                currentSpeedupButton.animator.SetTrigger(speedupButton.animationTriggers.highlightedTrigger);
-                missleButton.animator.SetTrigger(missleButton.animationTriggers.selectedTrigger);
+                currentSpeedupButton.animator.SetTrigger(currentSpeedupButton.animationTriggers.highlightedTrigger);
+                currentMissileButton.animator.SetTrigger(currentMissileButton.animationTriggers.selectedTrigger);
                 break;
             case POWEUP_STAGE.DOUBLE:
-                missleButton.animator.SetTrigger(missleButton.animationTriggers.highlightedTrigger);
+                currentMissileButton.animator.SetTrigger(currentMissileButton.animationTriggers.highlightedTrigger);
                 doubleButton.animator.SetTrigger(doubleButton.animationTriggers.selectedTrigger);
                 break;
             case POWEUP_STAGE.LASER:
@@ -123,7 +123,7 @@ public class PowerupManager : MonoBehaviour
             case POWEUP_STAGE.RESET:
                 //reset all the powerups
                 PowerupReset();
-                OnPowerupCollect(); //reset just clears the power stages, but we want this to "reset" to SpeedUp, so call to advance powerupStage
+                OnPowerupCollect(null); //reset just clears the power stages, but we want this to "reset" to SpeedUp, so call to advance powerupStage
                 break;
             default:
                 break;
@@ -146,10 +146,10 @@ public class PowerupManager : MonoBehaviour
                 doubleButton.animator.SetTrigger(doubleButton.animationTriggers.normalTrigger);
                 goto case POWEUP_STAGE.DOUBLE;
             case POWEUP_STAGE.DOUBLE:
-                missleButton.animator.SetTrigger(missleButton.animationTriggers.normalTrigger);
+                currentMissileButton.animator.SetTrigger(currentMissileButton.animationTriggers.normalTrigger);
                 goto case POWEUP_STAGE.MISSLE;
             case POWEUP_STAGE.MISSLE:
-                currentSpeedupButton.animator.SetTrigger(speedupButton.animationTriggers.normalTrigger);
+                currentSpeedupButton.animator.SetTrigger(currentSpeedupButton.animationTriggers.normalTrigger);
                 break;
             default:
                 break;
@@ -168,10 +168,10 @@ public class PowerupManager : MonoBehaviour
                 case POWEUP_STAGE.NONE://you get NOTHING!
                     break;
                 case POWEUP_STAGE.SPEEDUP:
-                    if (currentSpeedupStages <= maxSpeedupStages)
+                    if (currentSpeedupStages < maxSpeedupStages)
                     {
-                        speedupButton.animator.SetTrigger(speedupButton.animationTriggers.pressedTrigger);
-                        ship.OnSpeedupSelected();
+                        currentSpeedupButton.animator.SetTrigger(currentSpeedupButton.animationTriggers.pressedTrigger);
+                        EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "speedup", 1 } });
                         currentSpeedupStages++;
                         if (currentSpeedupStages >= maxSpeedupStages)
                         {
@@ -182,14 +182,31 @@ public class PowerupManager : MonoBehaviour
                     }
                     break;
                 case POWEUP_STAGE.MISSLE:
+                    if (currentMissileStages < maxMissileStages)
+                    {
+                        currentMissileButton.animator.SetTrigger(currentMissileButton.animationTriggers.pressedTrigger);
+                        EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "missile", 1 } });
+                        currentMissileStages++;
+                        if (currentMissileStages >= maxMissileStages)
+                        {
+                            currentMissileButton = missleButtonDisabled;
+                            _ = StartCoroutine(OnDisableButton(POWEUP_STAGE.MISSLE));
+                        }
+                        powerupUsed = true;
+                    }
+                    
                     break;
                 case POWEUP_STAGE.DOUBLE:
+                    EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "double", 1 } });
                     break;
                 case POWEUP_STAGE.LASER:
+                    EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "laser", 1 } });
                     break;
                 case POWEUP_STAGE.CLONE:
+                    EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "clone", 1 } });
                     break;
                 case POWEUP_STAGE.FORCEFIELD:
+                    EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "forcefield", 1 } });
                     break;
                 
                 default:
@@ -214,6 +231,8 @@ public class PowerupManager : MonoBehaviour
                 speedupButtonDisabled.gameObject.SetActive(true);
                 break;
             case POWEUP_STAGE.MISSLE:
+                missileButton.gameObject.SetActive(false);
+                missleButtonDisabled.gameObject.SetActive(true);
                 break;
             case POWEUP_STAGE.DOUBLE:
                 break;

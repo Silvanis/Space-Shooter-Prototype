@@ -6,7 +6,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
 
-    private Dictionary<string, Action> eventDictionary;
+    private Dictionary<string, Action<Dictionary<string, object>>> eventDictionary;
 
     private static EventManager eventManager;
 
@@ -36,13 +36,13 @@ public class EventManager : MonoBehaviour
     {
         if (eventDictionary == null)
         {
-            eventDictionary = new Dictionary<string, Action>();
+            eventDictionary = new Dictionary<string, Action<Dictionary<string, object>>>();
         }
     }
 
-    public static void StartListening(string eventName, Action listener)
+    public static void StartListening(string eventName, Action<Dictionary<string, object>> listener)
     {
-        Action thisEvent;
+        Action<Dictionary<string, object>> thisEvent;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             //Add more event to the existing one
@@ -59,10 +59,10 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public static void StopListening(string eventName, Action listener)
+    public static void StopListening(string eventName, Action<Dictionary<string, object>> listener)
     {
         if (eventManager == null) return;
-        Action thisEvent;
+        Action<Dictionary<string, object>> thisEvent;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             //Remove event from the existing one
@@ -73,12 +73,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public static void TriggerEvent(string eventName)
+    public static void TriggerEvent(string eventName, Dictionary<string, object> message)
     {
-        Action thisEvent = null;
+        Action<Dictionary<string, object>> thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke();
+            thisEvent.Invoke(message);
             // OR USE instance.eventDictionary[eventName]();
         }
     }

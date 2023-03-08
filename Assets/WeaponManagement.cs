@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class WeaponManagement : MonoBehaviour
 {
     [SerializeField]
-    private float bulletFireRate = 0.5f;
+    private float bulletFireRate = 0.3f;
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
@@ -20,6 +20,8 @@ public class WeaponManagement : MonoBehaviour
     private float missileFireRate = 2.0f;
     [SerializeField]
     private GameObject missilePrefab;
+    [SerializeField]
+    private bool missileAutofire = true;
     private bool isUsingMissiles = false;
     private float missileFireTimerAccumulator = 0.0f;
 
@@ -27,6 +29,16 @@ public class WeaponManagement : MonoBehaviour
     void Start()
     {
 
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("powerupSelected", OnPowerupSelected);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("powerupSelected", OnPowerupSelected);
     }
 
     // Update is called once per frame
@@ -46,7 +58,7 @@ public class WeaponManagement : MonoBehaviour
             }
         }
 
-        if (isShooting && isUsingMissiles)
+        if (isUsingMissiles && (missileAutofire = true || (missileAutofire = false && isShooting)))
         {
             missileFireTimerAccumulator += Time.deltaTime;
             if (missileFireTimerAccumulator > missileFireRate)
@@ -84,6 +96,12 @@ public class WeaponManagement : MonoBehaviour
     }
 
  
-
+    private void OnPowerupSelected(Dictionary<string, object> message)
+    {
+        if (message.ContainsKey("missile"))
+        {
+            isUsingMissiles = true;
+        }
+    }
 
 }

@@ -24,6 +24,15 @@ public class ShipInput : MonoBehaviour
     private GameObject shipFlamesStage3;
     private GameObject shipFlamesStage4;
 
+    private void OnEnable()
+    {
+        EventManager.StartListening("powerupSelected", OnSpeedupSelected);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("powerupSelected", OnSpeedupSelected);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -52,9 +61,9 @@ public class ShipInput : MonoBehaviour
     }
 
 
-    public void OnSpeedupSelected()
+    public void OnSpeedupSelected(Dictionary<string, object> message)
     {
-        if (speedupStage < maxNumberOfSpeedups)
+        if (message.ContainsKey("speedup") && speedupStage < maxNumberOfSpeedups)
         {
             speedupStage++;
             moveSpeed += speedupIncrement;
