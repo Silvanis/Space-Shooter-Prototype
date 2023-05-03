@@ -5,11 +5,16 @@ using UnityEngine;
 
 public abstract class ProjectileBase : MonoBehaviour
 {
-    public float bulletSpeed = 5.0f;
-   
-    public bool isVisible = true;
+    [SerializeField]
+    protected float projectileSpeed = 5.0f;
+    [SerializeField]
+    private int projectileDamage = 1;
 
-    
+    public int ProjectileDamage { get => projectileDamage; protected set => projectileDamage = value; }
+
+
+
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -19,7 +24,7 @@ public abstract class ProjectileBase : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        transform.position += transform.right * bulletSpeed * Time.deltaTime;
+        transform.position += projectileSpeed * Time.deltaTime * transform.right;
 
     }
 

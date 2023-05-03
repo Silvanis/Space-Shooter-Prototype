@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521324f325b51c84f998c6840897d0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHitPoints: 1
   waypoints: []
   initialFireDelay: 0.1
   subsequentFireDelay: 5

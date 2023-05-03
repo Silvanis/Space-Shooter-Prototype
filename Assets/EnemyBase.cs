@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+    [SerializeField]
+    private int enemyHitPoints = 1;
     public List<WaypointData> waypoints;
     protected float currentSpeed;
     protected Vector3 currentWaypoint;
@@ -15,6 +17,9 @@ public abstract class EnemyBase : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject powerupPrefab;
     public bool isPowerupEnemy = false;
+
+    public int EnemyHitPoints { get => enemyHitPoints; protected set => enemyHitPoints = value; }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -84,12 +89,17 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player Weapons"))
         {
-            if (isPowerupEnemy)
+            enemyHitPoints -= collision.gameObject.GetComponent<ProjectileBase>().ProjectileDamage;
+            if (enemyHitPoints <= 0)
             {
-                Instantiate(powerupPrefab, transform.position, transform.rotation);
+                if (isPowerupEnemy)
+                {
+                    Instantiate(powerupPrefab, transform.position, transform.rotation);
+                }
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
             }
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
+            
         }
     }
 }

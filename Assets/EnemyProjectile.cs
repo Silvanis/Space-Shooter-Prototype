@@ -16,7 +16,7 @@ public class EnemyProjectile : ProjectileBase
     // Update is called once per frame
     protected override void Update()
     {
-        transform.position += (firingAngle * bulletSpeed * Time.deltaTime);
+        transform.position += (firingAngle * projectileSpeed * Time.deltaTime);
     }
 
 
