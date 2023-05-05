@@ -25,6 +25,10 @@ public class WeaponManagement : MonoBehaviour
     private bool isUsingMissiles = false;
     private float missileFireTimerAccumulator = 0.0f;
 
+    [SerializeField]
+    private GameObject doublePrefab;
+    private bool isUsingDouble = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +58,11 @@ public class WeaponManagement : MonoBehaviour
                 newBullet.GetComponent<BulletProjectile>().OnBulletDestroyed += WeaponManagement_OnBulletDestroyed;
                 bulletFireTimerAccumulator = 0.0f;
                 currentNumOfBullets++;
-                
+
+                if (isUsingDouble)
+                {
+                    var newDoubleBullet = Instantiate(doublePrefab, bulletPosition, transform.rotation);
+                }
             }
         }
 
@@ -101,6 +109,10 @@ public class WeaponManagement : MonoBehaviour
         if (message.ContainsKey("missile"))
         {
             isUsingMissiles = true;
+        }
+        else if (message.ContainsKey("double"))
+        {
+            isUsingDouble = true;
         }
     }
 

@@ -197,7 +197,18 @@ public class PowerupManager : MonoBehaviour
                     
                     break;
                 case POWEUP_STAGE.DOUBLE:
-                    EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "double", 1 } });
+                    if (currentDoubleStages < maxDoubleStages)
+                    {
+                        currentDoubleButton.animator.SetTrigger(currentDoubleButton.animationTriggers.pressedTrigger);
+                        EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "double", 1 } });
+                        currentDoubleStages++;
+                        if (currentDoubleStages >= maxDoubleStages)
+                        {
+                            currentDoubleButton = doubleButtonDisabled;
+                            _ = StartCoroutine(OnDisableButton(POWEUP_STAGE.DOUBLE));
+                        }
+                        powerupUsed = true;
+                    }
                     break;
                 case POWEUP_STAGE.LASER:
                     EventManager.TriggerEvent("powerupSelected", new Dictionary<string, object> { { "laser", 1 } });
@@ -235,12 +246,20 @@ public class PowerupManager : MonoBehaviour
                 missleButtonDisabled.gameObject.SetActive(true);
                 break;
             case POWEUP_STAGE.DOUBLE:
+                doubleButton.gameObject.SetActive(false);
+                doubleButtonDisabled.gameObject.SetActive(true);
                 break;
             case POWEUP_STAGE.LASER:
+                laserButton.gameObject.SetActive(false);
+                laserButtonDisabled.gameObject.SetActive(true);
                 break;
             case POWEUP_STAGE.CLONE:
+                cloneButton.gameObject.SetActive(false);
+                cloneButtonDisabled.gameObject.SetActive(true);
                 break;
             case POWEUP_STAGE.FORCEFIELD:
+                forcefieldButton.gameObject.SetActive(false);
+                forcefieldButtonDisabled.gameObject.SetActive(true);
                 break;
 
             default:
